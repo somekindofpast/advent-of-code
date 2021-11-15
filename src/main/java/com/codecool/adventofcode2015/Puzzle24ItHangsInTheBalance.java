@@ -5,10 +5,10 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class ItHangsInTheBalance {
+public class Puzzle24ItHangsInTheBalance {
     public static void main(String[] args) {
-        ArrayList<String> inputLines = new ArrayList<>(Arrays.asList(readLines("src/main/resources/2015/It Hangs in the Balance.txt")));
-        //ArrayList<String> inputLines = new ArrayList<>(Arrays.asList(new String[]{"1", "2", "3", "4", "5", "7", "8", "9", "10", "11"}));
+        //ArrayList<String> inputLines = new ArrayList<>(Arrays.asList(readLines("src/main/resources/2015/It Hangs in the Balance.txt")));
+        ArrayList<String> inputLines = new ArrayList<>(Arrays.asList(new String[]{"1", "2", "3", "4", "5", "7", "8", "9", "10", "11"}));
         //ArrayList<String> inputLines = new ArrayList<>(Arrays.asList(new String[]{"1", "2", "3", "5", "7", "13", "17", "19", "23", "29", "31"}));
         if(inputLines.size() == 0)
             System.out.println("Input file not found");
@@ -115,13 +115,9 @@ public class ItHangsInTheBalance {
         if(numbers == null || numbers.size() < 2)
             return false;
 
-        for (int i = 0; i < numbers.size(); i++) {
-            for (int j = 0; j < numbers.size(); j++) {
-                if(i != j && Objects.equals(numbers.get(i), numbers.get(j)))
-                    return true;
-            }
-        }
-        return false;
+        Set<Integer> numberSet = new HashSet<>(numbers);
+
+        return numbers.size() != numberSet.size();
     }
 
     private static void removeRepeatingNumberGroups(Integer groupSize, ArrayList<Integer> numbers) {
@@ -163,12 +159,7 @@ public class ItHangsInTheBalance {
     }
 
     private static boolean sameNumberGroups(ArrayList<Integer> groupA, ArrayList<Integer> groupB) {
-        for (int i = 0; i < groupA.size(); i++) {
-            if(!groupB.contains(groupA.get(i))) {
-                return false;
-            }
-        }
-        return true;
+        return groupA.containsAll(groupB) && groupB.containsAll(groupA);
     }
 
     private static int getSumOfNumberList(final ArrayList<Integer> numberList) {
