@@ -46,7 +46,8 @@ public class Puzzle04Scratchcards {
     private static void partTwo(ArrayList<String> inputLines) {
         int[] cardGroups = new int[inputLines.size()];
         Arrays.fill(cardGroups, 1);
-        int row = 0;
+        int group = 0;
+        int totalNumberOfScratchCards = 0;
         for (String currentRow : inputLines) {
             String[] numberRows = currentRow.split(":")[1].split("\\|");
             ArrayList<Integer> ourNumbers = new ArrayList<>();
@@ -62,16 +63,12 @@ public class Puzzle04Scratchcards {
                     matches++;
                 }
             }
-            for (int cardRepeats = 1; cardRepeats <= cardGroups[row]; cardRepeats++) {
-                for (int i = 1; i <= matches && row + i < cardGroups.length; i++) {
-                    cardGroups[row + i]++;
+            for (int cardRepeats = 1; cardRepeats <= cardGroups[group]; cardRepeats++) {
+                for (int i = 1; i <= matches && group + i < cardGroups.length; i++) {
+                    cardGroups[group + i]++;
                 }
             }
-            row++;
-        }
-        int totalNumberOfScratchCards = 0;
-        for (int cardPerGroup : cardGroups) {
-            totalNumberOfScratchCards += cardPerGroup;
+            totalNumberOfScratchCards += cardGroups[group++];
         }
         System.out.println("total number of scratchcards: " + totalNumberOfScratchCards);
     }
