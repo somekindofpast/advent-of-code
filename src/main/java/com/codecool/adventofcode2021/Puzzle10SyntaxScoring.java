@@ -81,7 +81,7 @@ public class Puzzle10SyntaxScoring {
         }
     }
 
-    static class Parentheses {
+    private static class Parentheses {
         char type;
         boolean paired;
         boolean open;

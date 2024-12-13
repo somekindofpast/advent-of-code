@@ -71,7 +71,7 @@ public class Puzzle15Chiton {
         }
     }
 
-    static class GridNode {
+    private static class GridNode {
         public int row;
         public int column;
         public int value;

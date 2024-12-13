@@ -146,7 +146,7 @@ public class Puzzle08ResonantCollinearity {
         }
     }
 
-    static class RowCol {
+    private static class RowCol {
         public int row;
         public int col;
 
