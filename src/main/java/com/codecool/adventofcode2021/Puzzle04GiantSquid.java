@@ -86,65 +86,67 @@ public class Puzzle04GiantSquid {
             System.out.println("There was an error!");
         }
     }
-}
 
-class BingoSheet {
-    List<Integer[]> sheet = new ArrayList<>();
-    List<Boolean[]> booleanSheet = new ArrayList<>();
+    private static class BingoSheet {
+        List<Integer[]> sheet = new ArrayList<>();
+        List<Boolean[]> booleanSheet = new ArrayList<>();
 
-    public void addRow(String[] row) {
-        Integer[] newRow = new Integer[row.length];
-        Boolean[] newBooleanRow = new Boolean[row.length];
-        for (int i = 0; i < row.length; i++) {
-            newRow[i] = Integer.parseInt(row[i]);
-            newBooleanRow[i] = false;
+        public void addRow(String[] row) {
+            Integer[] newRow = new Integer[row.length];
+            Boolean[] newBooleanRow = new Boolean[row.length];
+            for (int i = 0; i < row.length; i++) {
+                newRow[i] = Integer.parseInt(row[i]);
+                newBooleanRow[i] = false;
+            }
+            sheet.add(newRow);
+            booleanSheet.add(newBooleanRow);
         }
-        sheet.add(newRow);
-        booleanSheet.add(newBooleanRow);
-    }
 
-    public void markNumber(int number) {
-        for (int i = 0; i < sheet.size(); i++) {
-            for (int j = 0; j < sheet.get(i).length; j++) {
-                if(sheet.get(i)[j] == number) {
-                    booleanSheet.get(i)[j] = true;
-                    return;
+        public void markNumber(int number) {
+            for (int i = 0; i < sheet.size(); i++) {
+                for (int j = 0; j < sheet.get(i).length; j++) {
+                    if(sheet.get(i)[j] == number) {
+                        booleanSheet.get(i)[j] = true;
+                        return;
+                    }
                 }
             }
         }
-    }
 
-    public boolean isBingo() {
-        for (int row = 0; row < sheet.size(); row++) {
-            int markedNumbers = 0;
-            for (int column = 0; column < sheet.get(row).length; column++) {
-                if(booleanSheet.get(row)[column])
-                    markedNumbers++;
-            }
-            if(markedNumbers == sheet.get(row).length)
-                return true;
-        }
-        for (int column = 0; column < sheet.get(0).length; column++) {
-            int markedNumbers = 0;
+        public boolean isBingo() {
             for (int row = 0; row < sheet.size(); row++) {
-                if(booleanSheet.get(row)[column])
-                    markedNumbers++;
+                int markedNumbers = 0;
+                for (int column = 0; column < sheet.get(row).length; column++) {
+                    if(booleanSheet.get(row)[column])
+                        markedNumbers++;
+                }
+                if(markedNumbers == sheet.get(row).length)
+                    return true;
             }
-            if(markedNumbers == sheet.size())
-                return true;
+            for (int column = 0; column < sheet.get(0).length; column++) {
+                int markedNumbers = 0;
+                for (int row = 0; row < sheet.size(); row++) {
+                    if(booleanSheet.get(row)[column])
+                        markedNumbers++;
+                }
+                if(markedNumbers == sheet.size())
+                    return true;
+            }
+            return false;
         }
-        return false;
-    }
 
-    public int getUnmarkedSum() {
-        int sum = 0;
-        for (int i = 0; i < sheet.size(); i++) {
-            for (int j = 0; j < sheet.get(i).length; j++) {
-                if(!booleanSheet.get(i)[j]) {
-                    sum += sheet.get(i)[j];
+        public int getUnmarkedSum() {
+            int sum = 0;
+            for (int i = 0; i < sheet.size(); i++) {
+                for (int j = 0; j < sheet.get(i).length; j++) {
+                    if(!booleanSheet.get(i)[j]) {
+                        sum += sheet.get(i)[j];
+                    }
                 }
             }
+            return sum;
         }
-        return sum;
     }
 }
+
+
