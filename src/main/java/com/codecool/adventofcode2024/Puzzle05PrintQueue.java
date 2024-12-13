@@ -94,18 +94,20 @@ public class Puzzle05PrintQueue {
             System.out.println("There was an error!");
         }
     }
+
+    private static class Pair {
+        public int left;
+        public int right;
+
+        Pair(int left, int right) {
+            this.left = left;
+            this.right = right;
+        }
+
+        public String toString() {
+            return left + "|" + right;
+        }
+    }
 }
 
-class Pair {
-    public int left;
-    public int right;
 
-    Pair(int left, int right) {
-        this.left = left;
-        this.right = right;
-    }
-
-    public String toString() {
-        return left + "|" + right;
-    }
-}
