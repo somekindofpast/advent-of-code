@@ -62,7 +62,7 @@ public class Puzzle11DumboOctopus {
         System.out.println("Puzzle 2: The first step during which all octopuses flash is " + firstFullGridFlash);
     }
 
-    static class Octopus {
+    private static class Octopus {
         int energy;
         boolean flashed;
 

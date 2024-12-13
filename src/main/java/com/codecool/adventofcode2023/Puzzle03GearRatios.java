@@ -47,7 +47,7 @@ public class Puzzle03GearRatios {
         System.out.println("Sum of all gear ratios: " + sumGearRatios);
     }
 
-    static class RowResult {
+    private static class RowResult {
         public int sumPartNumbers = 0;
         public ArrayList<Integer> adjacentNumbers = new ArrayList<>();
     }

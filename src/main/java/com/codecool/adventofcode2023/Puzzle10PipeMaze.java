@@ -70,7 +70,7 @@ public class Puzzle10PipeMaze {
     private static void partTwo(ArrayList<String> inputLines) {
     }
 
-    static class Maze {
+    private static class Maze {
         public char[][] grid;
         public int rowMax;
         public int colMax;
@@ -86,7 +86,7 @@ public class Puzzle10PipeMaze {
         public int colBPrevious;
     }
 
-    static class RowCol {
+    private static class RowCol {
         public int row;
         public int col;
     }
